@@ -1,0 +1,130 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 800,
+    "height": 600,
+    "title": "Electricity Generation vs Electricity Consumption 1988-2021",
+    "data": {
+    "url": "https://raw.githubusercontent.com/codyrosenzweig1/3179/main/DataVis2.csv"
+    },
+    "params": [
+        {
+            "name": "Year_Slider",
+            "value": 1988,
+            "bind": {
+                "input": "range",
+                "min": 1988,
+                "max": 2021,
+                "step": 1,
+                "name": "Year"
+            }
+        }, 
+        {
+            "name": "Region_Selection", 
+            "bind": {
+                "input": "select", 
+                "options": [
+                    null,
+                    "Africa",
+                    "Asia & Oceania",
+                    "Central & South America",
+                    "Eurasia",
+                    "Europe",
+                    "Middle East",
+                    "North America"
+                ],
+                "labels":[
+                    "Show All",
+                    "Africa",
+                    "Asia & Oceania",
+                    "Central & South America",
+                    "Eurasia",
+                    "Europe",
+                    "Middle East",
+                    "North America"
+                ],
+                "name": "Region selection: "
+            }
+        }
+    ],
+    "transform": [{"filter": "datum.net_consumption > 0.1"}, 
+        {"filter": "datum.net_generation > 0.1"}, 
+    {"filter": "datum.Year == Year_Slider"},
+{"filter": "Region_Selection == null || datum.Region == Region_Selection"}],
+    "encoding": {
+        "x": {
+            "field": "net_consumption",
+            "type": "quantitative",
+            "title": "Net Electricity Consumption",
+            "axis": {"tickCount": 7},
+            "scale": {"type": "log", "domain": [0.1, 10000]}
+        },
+        "y": {
+            "field": "net_generation",
+            "type": "quantitative",
+            "title": "Net Electricity Generation",
+            "axis": {"tickCount": 7},
+            "scale": {"type": "log", "domain": [0.1, 10000]}
+        }
+    },
+    "layer": [
+    {
+    "mark": "circle",
+    "encoding": {
+    "size": {
+    "field": "Population",
+    "type": "quantitative",
+    "scale": {
+    "type": "threshold",
+    "domain": [700000, 5000000, 50000000, 100000000, 1000000000], 
+    "range": [10, 50, 120, 200, 300, 400]
+    },
+    "legend": {"format": ".1s"}
+    },
+    "color": {
+        "field": "Region",
+        "type": "nominal"
+    },
+    "opacity" : {
+        "value": 0.6
+    },
+    "tooltip": [
+        {"field": "Country", "type": "nominal"},
+        {"field": "net_consumption", "type": "quantitative"},
+        {"field": "net_generation", "type": "quantitative"},
+        {"field": "Year", "type": "nominal"},
+        {"field": "Population", "type": "quantitative"}
+    ]
+    }
+    },
+    {
+    "mark": {
+    "type": "text",
+    "align": "right",
+    "baseline": "middle",
+    "dx": -12,
+    "fontSize": 11.5,
+    "fontStyle": "italic"
+    },
+    "encoding": {
+    "text": {"field": "Country", "type": "nominal"},
+    "color": {"value": "black"},
+    "opacity": {
+    "condition": {
+    "test": "datum['Country'] == 'China' || datum['Country'] == 'Australia' || datum['Country'] == 'United States' || datum['Country'] == 'Aruba' || datum['Country'] == 'India' || datum['Country'] == 'Germany' || datum['Country'] == 'Russia'",
+    "value": 1
+    },
+    "value": 0
+    },
+    "tooltip": [
+        {"field": "Country", "type": "nominal"},
+        {"field": "net_consumption", "type": "quantitative"},
+        {"field": "net_generation", "type": "quantitative"},
+        {"field": "Year", "type": "nominal"},
+        {"field": "Population", "type": "quantitative"}
+    ]
+    }
+    }
+    ]
+    }
+
+    

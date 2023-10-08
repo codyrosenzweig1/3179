@@ -1,73 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
-<head> 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300&family=Roboto:wght@300&display=swap" rel="stylesheet">
+<html>
+<head>
+  <!-- Import Vega & Vega-Lite (does not have to be from CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
 
-    <title> My first HTML Document</title>
+  <title>Week 10 Homework</title>
 
-    <link rel="stylesheet" href= "style.css">
+    <!-- CSS file -->
+  <link rel="stylesheet" type="text/css" href="style.css" media="all">
 
 </head>
 
 <body>
-    <h1>1. Introduction to HTML </h1>
-    <h2> 1.1 Creating paragraphs </h2>
-    <p>My First Paragraph. </p>
 
-    <h2> 1.2 CReating tables (level 2) </h2>
-    <h3> 1.2.1 Table Rows (Level 3)</h3>
-    <table border = "1" cellpadding="10%"> 
-        <tr>
-            <td>First Name</td>
-            <td>Last Name</td>
-            <td>Grade</td>
-        </tr>
-
-        <tr>
-            <td>John</td>
-            <td>Doe</td>
-            <td>HD</td>
-        </tr>
-
-        <tr>
-            <td>Jill</td>
-            <td>Jackson</td>
-            <td>D</td>
-        </tr>
-
-        <tr>
-            <td>Jane</td>
-            <td>Smith</td>
-            <td>C</td>
-        </tr>
-    </table>
-
-    <p> Third pargraph about table rows</p>
-
-    <h3> 1.2.2 Table COlumns </h3>
+    <h1>Week 10 Vega-Lite Homework</h1>
 
 
-    <p> Bljoihfo i3hfoih fiho</p>
+    <div id="First_Mediterranean">
 
-    <h2> Embedding Images (Level 2)</h2>
+        <script type="text/javascript">
+            var spec2 = "First_Mediterranean.vega";
+        vegaEmbed('#First_Mediterranean', spec2).then(function(result) {
+            // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+        }).catch(console.error);
+        </script>
 
-        <img src="leopard.jpg" />
+    </div>
+        
+    <div class ="container">
 
-    <p> Images in HTML </p>
-    <div style = "color: red;">
-    <h2>Hyperlinks in HTML</h2>
-        <a href="https://www.monash.edu/">
-            Click here to view Monash webiste
-        </a>
+        <div class="text-column">
+            <p> Hello This is a TEST </p>
+        </div>
+
+        <div class='graph-column', id="bubble_vega">
+
+            <script type="text/javascript">
+                var spec2 = "bubble_vega.vega";
+            vegaEmbed('#bubble_vega', spec2).then(function(result) {
+                // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+            }).catch(console.error);
+            </script>
+        </div>
     </div>
 
-    <div style = 'color: green;'>
-        <h1>Heading of Second group</h1>
-    </div>
+
+
 </body>
 </html>
-
-
