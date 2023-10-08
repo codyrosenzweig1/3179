@@ -1,0 +1,34 @@
+.container {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.text-column {
+    position: absolute;
+    top: 1000px;
+    left: 20px;
+}
+
+#bubble_vega {
+	top:100px;
+	bottom: 100px; 
+	left: 100px;
+	right: 100px;
+	/*height: 1000px;
+	width: 800px;*/
+}
+
+#First_Mediterranean {
+	top:100px;
+	bottom: 100px; 
+	left: 100px;
+	right: 100px;
+	/*height: 1000px;
+	width: 800px;*/
+}
+
+.text-column, .graph-column {
+    flex: 1;
+    padding: 20px;
+    box-sizing: border-box;
+}
