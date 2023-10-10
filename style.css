@@ -1,34 +1,36 @@
-.container {
-    display: flex;
-    justify-content: space-evenly;
+h1 {
+    font-weight: 900;
 }
 
-.text-column {
-    position: absolute;
-    top: 1000px;
-    left: 20px;
+body {
+    background-color: rgb(150, 114, 56);
 }
 
-#bubble_vega {
-	top:100px;
-	bottom: 100px; 
-	left: 100px;
-	right: 100px;
-	/*height: 1000px;
-	width: 800px;*/
+.page {
+    width: 850px;
+    background-color: rgb(244, 233, 209);
+    margin: auto;
+    padding: 50px;
+    padding-top: 35px;
 }
 
-#First_Mediterranean {
-	top:100px;
-	bottom: 100px; 
-	left: 100px;
-	right: 100px;
-	/*height: 1000px;
-	width: 800px;*/
+.description-right {
+    padding-left: 20px;
 }
 
-.text-column, .graph-column {
-    flex: 1;
-    padding: 20px;
-    box-sizing: border-box;
+.description-left {
+    padding-right: 20px;
+}
+
+.pure-g {
+    margin-bottom: 40px;
+}
+
+.vis-container {
+    width: 100%;
+	padding-right: 20px;
+}
+
+.small-font {
+    font-size: 14px;
 }

@@ -1,0 +1,38 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 300,
+    "height": 300,
+    "title": "Net Generation by Region",
+    "data": {
+    "url": "https://raw.githubusercontent.com/codyrosenzweig1/3179/main/DataVis2.csv"
+    },
+    "params": [
+        {
+            "name": "Year_Slider",
+            "value": 1980,
+            "bind": {
+                "input": "range",
+                "min": 1988,
+                "max": 2021,
+                "step": 1,
+                "name": "Year"
+            }
+        }], 
+    "transform": [{"filter": "datum.Year == Year_Slider"},
+        {
+            "aggregate": [{"op": "sum", "field": "net_generation", "as": "Region_Generation"}],
+            "groupby": ["Region", "Year"]
+        }
+    ],
+  "mark": "bar",
+  "encoding": {
+    "x": {"field": "Region", "type": "nominal", "sort": {"field": "Region_Generation"}},
+    "y": {"field": "Region_Generation", "type": "quantitative"},
+    "color": {"field": "Region", "type": "nominal"}
+  },
+  "config": {
+    "axisX": {
+      "labelAngle": -45 
+    }
+  }
+}
