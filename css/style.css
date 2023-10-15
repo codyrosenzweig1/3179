@@ -2,6 +2,34 @@ body {
     background-color: rgb(150, 114, 56);
 }
 
+.red-text {
+    color: red;
+}
+
+.blue-text {
+    color: blue;
+}
+
+.green-text {
+    color: green;
+}
+
+.purple-text {
+    color: purple;
+}
+
+.orange-text {
+    color: rgb(255, 115, 0);
+}
+
+.brown-text {
+    color: brown;
+}
+
+.medium-blue-text {
+    color: rgb(6, 71, 156);
+}
+
 .page {
     width: 850px;
     background-color: rgb(244, 233, 209);
@@ -17,8 +45,6 @@ body {
 .vis-container {
     width: 100%;
     background-color: rgb(244, 233, 209);
-	padding-left: 20px;
-    padding-right: 20px;
     padding-top: 20px;
 }
 
