@@ -2,7 +2,7 @@
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "width": 260,
     "height": 280,
-    "title": "Net Consumption by Region",
+    "title": "Consumption by Region",
     "data": {
     "url": "https://raw.githubusercontent.com/codyrosenzweig1/3179/main/DataVis2.csv"
     },

@@ -4,7 +4,7 @@
     "height": 200,
     "data": {
         "url": "https://raw.githubusercontent.com/codyrosenzweig1/3179/main/DataVis2.csv"},
-    "transform": [{"filter": "datum.Year >= 1990"},
+    "transform": [
     {"filter": "datum.Country=='Russia' || datum.Country == 'Germany' || datum.Country == 'China' || datum.Country == 'India' || datum.Country == 'United States of America' || datum.Country == 'Australia'"}],
     "encoding": {
       "color": {
@@ -13,7 +13,10 @@
         "legend": null
       }
     },
-    "layer": [{
+    "layer": [
+      {
+        "transform": [
+          {"filter": "datum.Year >= 1990"}],
       "mark": "line",
       "encoding": {
         "x": {"field": "Year", "type": "temporal", "title": "Year"},
