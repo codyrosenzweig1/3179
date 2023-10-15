@@ -1,0 +1,80 @@
+body {
+    background-color: rgb(150, 114, 56);
+}
+
+.page {
+    width: 850px;
+    background-color: rgb(244, 233, 209);
+    margin: auto;
+    padding: 50px;
+    padding-top: 50px;
+}
+
+.pure-g {
+    margin-bottom: 40px;
+}
+
+.vis-container {
+    width: 100%;
+    background-color: rgb(244, 233, 209);
+	padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 20px;
+}
+
+.small-font {
+    font-size: 14px;
+}
+
+.description-middle {
+    text-align: justify;
+    background-color: rgb(244, 233, 209);
+}
+
+.description-right {
+    padding-left: 20px;
+    text-align: justify;
+    background-color: rgb(244, 233, 209);
+}
+
+.description-left {
+    padding-right: 20px;
+    text-align: justify;
+    background-color: rgb(244, 233, 209);
+}
+
+p {
+    font-family: 'Inclusive Sans', sans-serif;
+    margin-left: 20px;
+	margin-right: 20px;
+	font-size: 28px;
+	text-align: justify;
+}
+
+h1 {
+	font-weight: 900;
+	font-size: 80px;
+    background-color: rgb(244, 233, 209);
+	/* font-family: 'Inclusive Sans', serif; */
+	font-family: 'Lora', sans-serif;
+    text-align: left;
+	font-weight: bold;
+    color: #000000e4;
+}
+
+h2 {
+    padding-left: 20px;
+    font-family: 'Inclusive Sans', sans-serif;
+    background-color: rgb(244, 233, 209);
+}
+
+h3 {
+    padding-left: 20px;
+    font-family: 'Inclusive Sans', sans-serif;
+}
+
+h4 {
+    padding-left: 20px;
+    text-align: left;
+    font-family: 'Inclusive Sans', sans-serif;
+}
