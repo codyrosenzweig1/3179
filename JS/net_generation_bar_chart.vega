@@ -2,7 +2,7 @@
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "width": 260,
     "height": 280,
-    "title": "Net Generation by Region",
+    "title": "Net Consumption by Region",
     "data": {
     "url": "https://raw.githubusercontent.com/codyrosenzweig1/3179/main/DataVis2.csv"
     },
@@ -20,7 +20,9 @@
         }], 
     "transform": [{"filter": "datum.Year == Year_Slider"},
         {
-            "aggregate": [{"op": "sum", "field": "net_consumption", "as": "Region_Consumption"}],
+            "aggregate": [{"op": "sum", "field": "net_consumption", "as": "Region_Consumption"},
+            {"op": "sum", "field": "net_generation", "as": "Region_Generation"},
+            {"op": "sum", "field": "Population", "as": "Region_Population"}],
             "groupby": ["Region", "Year"]
         }
     ],
@@ -28,8 +30,15 @@
   "encoding": {
     "x": {"field": "Region", "type": "nominal", "sort": {"field": "Region_Consumption"}},
     "y": {"field": "Region_Consumption", "type": "quantitative", "title": " Regional Consumption"},
-    "color": {"field": "Region", "type": "nominal", "legend": null}
+    "color": {"field": "Region", "type": "nominal", "legend": null},
+    "tooltip": [
+      {"field": "Region", "type": "nominal", "title": "Region"},
+      {"field": "Region_Population", "type": "nominal", "title": "Population"},
+      {"field": "Region_Generation", "type": "quantitative", "title": "Region Generation", "format": ".0f"},
+      {"field": "Region_Consumption", "type": "quantitative", "title": "Region Consumption", "format": ".0f"}
+    ]
   },
+  
   "config": {
     "axisX": {
       "labelAngle": -45 

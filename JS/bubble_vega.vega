@@ -47,7 +47,11 @@
         }
     ],
     "transform": [{"filter": "datum.net_consumption > 0.1"}, 
-        {"filter": "datum.net_generation > 0.1"}, 
+        {"filter": "datum.net_generation > 0.1"},
+        {
+            "calculate": "datum.net_generation/datum.Population * 1000000",
+            "as": "Generation per 1,000,000 Population"
+            },
     {"filter": "datum.Year == Year_Slider"},
 {"filter": "Region_Selection == null || datum.Region == Region_Selection"}],
     "encoding": {
@@ -64,7 +68,12 @@
             "title": "Net Electricity Generation",
             "axis": {"grid": false, "ticks": false},
             "scale": {"type": "log", "domain": [0.1, 10000]}
-        }
+        },
+        "opacity": {
+            "condition": {"param": "Region_Selection", "value": 0.6},
+            "value": 0.2
+            }
+            
     },
     "layer": [
     {
@@ -89,8 +98,9 @@
     },
     "tooltip": [
         {"field": "Country", "type": "nominal"},
-        {"field": "net_consumption", "type": "quantitative"},
-        {"field": "net_generation", "type": "quantitative"},
+        {"field": "net_consumption", "type": "quantitative", "title": "Consumption"},
+        {"field": "net_generation", "type": "quantitative", "title": "Generation"},
+        {"field": "Generation per 1,000,000 Population", "type": "quantitative", "format": ".3f"},
         {"field": "Year", "type": "nominal"},
         {"field": "Population", "type": "quantitative"}
     ]

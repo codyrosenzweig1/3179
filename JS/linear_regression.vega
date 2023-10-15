@@ -1,8 +1,8 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "width": 350,
+    "width": 250,
     "height": 350,
-    "title": "Consumption vs Population",
+    "title": "Consumption vs Population: Mediterranean",
     "data": {
       "url": "https://raw.githubusercontent.com/codyrosenzweig1/3179/main/DataVis2.csv"
     },
@@ -18,13 +18,20 @@
                 "name": "Year "
             }
         }],
-    "transform": [{"filter": "datum.Year == Year_Slider"}, 
+    "transform": [{"filter": "datum.Year == Year_Slider"},
+    {"calculate": "datum.net_consumption", "as": "Result"}, 
+    {"filter": "datum.Country == 'Egypt' || datum.Country == 'Algeria' || datum.Country == 'Morocco' || datum.Country == 'Tunisia' || datum.Country == 'Libiya' || datum.Country != 'Ireland' & datum.Country != 'Denmark' & datum.Country != 'Iceland' & datum.Country != 'Faroe Islands' & datum.Country != 'Lithuania' & datum.Country != 'Gibraltar' & datum.Country != 'Sweden' & datum.Country != 'United Kingdom' & datum.Country != 'Poland' & datum.Country != 'Estonia' & datum.Country != 'Finland' & datum.Country != 'Latvia' & datum.Country != 'Norway' & datum.Country != 'Belgium' & datum.Region == 'Europe' || (datum.Region == 'Eurasia' & datum.Country != 'Kazakhstan') || datum.Country == 'Syria' || datum.Country == 'Iran' || datum.Country == 'Iraq' || datum.Country == 'Jordan' || datum.Country == 'Israel' || datum.Country == 'Saudi Arabia' || datum.Country == 'Lebanon'"},
     {"filter": "datum.Population > 0.01"}, 
+    {
+      "calculate": "datum.net_consumption/datum.Population * 1000000",
+      "as": "Consumption per 1,000,000 Population"
+      },
         {"filter": "datum.net_consumption > 0.0001"}],
     "layer": [
       {
         "mark": {
-          "type": "point",
+          "type": "circle",
+          "size": 200,
           "filled": true
         },
         "encoding": {
@@ -32,7 +39,7 @@
             "field": "Population",
             "type": "quantitative",
             "axis": {"grid": false, "ticks": false},
-            "scale": {"type": "log", "domain": [10000, 1000000000]},
+            "scale": {"type": "log", "domain": [150000, 1000000000]},
             "title": "Log Population"
           },
           "y": {
@@ -41,13 +48,65 @@
             "axis": {"grid": false, "ticks": false},
             "scale": {"type": "log", "domain": [0.01, 10000]},
             "title": "Log Energy Consumption (Billion kWh)"
-
-          }
+          },
+          "opacity" : {
+            "value": 0.6},
+            "color": {
+              "field": "Region",
+              "type": "nominal"},
+          "tooltip": [
+            {"field": "Country", "type": "nominal", "title": "Country"},
+            {"field": "Result", "type": "quantitative", "title": "Billion kWh consumed", "format": ".2f"},
+            {"field": "Consumption per 1,000,000 Population", "type": "quantitative", "format": ".3f"},
+            {"field": "Population", "type": "quantitative", "title": "Population", "format": ".0f"}
+          ]
         }
-      }
+      },
+      {
+        "mark": {
+        "type": "text",
+        "align": "right",
+        "baseline": "middle",
+        "dx": -8,
+        "fontSize": 11.5,
+        "fontStyle": "italic"
+        },
+        "encoding": {"x": {
+          "field": "Population",
+          "type": "quantitative",
+          "axis": {"grid": false, "ticks": false},
+          "scale": {"type": "log", "domain": [150000, 1000000000]},
+          "title": "Log Population"
+        },
+        "y": {
+          "field": "net_consumption",
+          "type": "quantitative",
+          "axis": {"grid": false, "ticks": false},
+          "scale": {"type": "log", "domain": [0.01, 10000]},
+          "title": "Log Energy Consumption (Billion kWh)"
+        },
+        "text": {"field": "Country", "type": "nominal"},
+        "color": {"value": "black"},
+        "opacity": {
+        "condition": {
+          "test": "datum['Country'] == 'France' || datum['Country'] == 'Iran' || datum['Country'] == 'Malta' || datum['Country'] == 'Russia' || datum['Country'] == 'Egypt' || datum['Country'] == 'Algeria'",
+            "value": 1
+            },
+          "value": 0
+          },
+          "tooltip": [
+            {"field": "Country", "type": "nominal"},
+            {"field": "net_consumption", "type": "quantitative"},
+            {"field": "net_generation", "type": "quantitative"},
+            {"field": "Year", "type": "nominal"},
+            {"field": "Population", "type": "quantitative"
+            }
+          ]
+        }
+        }
     ],
     "config": {
         "background": "#F4E9D1",
-        "title": {"fontSize": 25}
+        "title": {"fontSize": 20}
     }
   }
