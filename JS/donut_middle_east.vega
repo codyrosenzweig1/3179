@@ -1,0 +1,35 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+      "width": 300,
+      "height": 300,
+      "title": "Proportions of Middle Eastern Electricity generation",
+      "data": {
+          "url": "https://raw.githubusercontent.com/codyrosenzweig1/3179/main/DataVis2.csv"
+      },
+      "params": [
+        {
+            "name": "Year_Slider",
+            "value": 1992,
+            "bind": {
+                "input": "range",
+                "min": 1992,
+                "max": 2021,
+                "step": 1,
+                "name": "Year "
+            }
+        }], 
+    "transform": [{"filter": "datum.Year == Year_Slider"},
+    {"filter": "datum.Year >= 1990"},
+    {"filter": "datum.Country == 'Syria' || datum.Country == 'Iran' || datum.Country == 'Iraq' || datum.Country == 'Jordan' || datum.Country == 'Israel' || datum.Country == 'Saudi Arabia' || datum.Country == 'Lebanon'"}
+    ],
+      "mark": {"type": "arc", "innerRadius": 50},
+      "encoding": {
+        "theta": {"field": "net_generation", "type": "quantitative"},
+        "color": {"field": "Country", "type": "nominal"
+        }
+      },
+      "config": {
+          "background": "#F4E9D1"
+      }
+    
+}

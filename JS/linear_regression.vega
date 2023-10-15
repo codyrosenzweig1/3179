@@ -1,0 +1,53 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 350,
+    "height": 350,
+    "title": "Consumption vs Population",
+    "data": {
+      "url": "https://raw.githubusercontent.com/codyrosenzweig1/3179/main/DataVis2.csv"
+    },
+    "params": [
+        {
+            "name": "Year_Slider",
+            "value": 1988,
+            "bind": {
+                "input": "range",
+                "min": 1988,
+                "max": 2021,
+                "step": 1,
+                "name": "Year "
+            }
+        }],
+    "transform": [{"filter": "datum.Year == Year_Slider"}, 
+    {"filter": "datum.Population > 0.01"}, 
+        {"filter": "datum.net_consumption > 0.0001"}],
+    "layer": [
+      {
+        "mark": {
+          "type": "point",
+          "filled": true
+        },
+        "encoding": {
+          "x": {
+            "field": "Population",
+            "type": "quantitative",
+            "axis": {"grid": false, "ticks": false},
+            "scale": {"type": "log", "domain": [10000, 1000000000]},
+            "title": "Log Population"
+          },
+          "y": {
+            "field": "net_consumption",
+            "type": "quantitative",
+            "axis": {"grid": false, "ticks": false},
+            "scale": {"type": "log", "domain": [0.01, 10000]},
+            "title": "Log Energy Consumption (Billion kWh)"
+
+          }
+        }
+      }
+    ],
+    "config": {
+        "background": "#F4E9D1",
+        "title": {"fontSize": 25}
+    }
+  }

@@ -1,0 +1,37 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 260,
+    "height": 200,
+    "data": {
+        "url": "https://raw.githubusercontent.com/codyrosenzweig1/3179/main/DataVis2.csv"},
+    "transform": [{"filter": "datum.Year >= 1990"},
+    {"filter": "datum.Country=='Russia' || datum.Country == 'Germany' || datum.Country == 'China' || datum.Country == 'India' || datum.Country == 'United States of America' || datum.Country == 'Australia'"}],
+    "encoding": {
+      "color": {
+        "field":"Country",
+        "type":"nominal",
+        "legend": null
+      }
+    },
+    "layer": [{
+      "mark": "line",
+      "encoding": {
+        "x": {"field": "Year", "type": "temporal", "title": "Year"},
+        "y": {"field": "net_generation", "type": "quantitative", "title": "Net Generation"}
+      }
+    },{
+      "encoding": {
+        "x": {"aggregate": "max", "field": "Year", "type": "temporal"},
+        "y": {"aggregate": {"argmax": "Year"}, "field": "net_generation", "type": "quantitative"}
+      },
+      "layer": [{
+        "mark": {"type": "circle"}
+      }, {
+        "mark": {"type": "text", "align": "left", "dx": 10},
+        "encoding": {"text": {"field":"Country", "type": "nominal"}}
+      }]
+    }],
+    "config": {"view": {"stroke": null},
+    "background": "#F4E9D1",
+    "title": {"fontSize": 18}}
+  }

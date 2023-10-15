@@ -1,0 +1,70 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": "Energy Production Around The World 2021",
+    "width": 680,
+    "height": 680,
+      "data": {
+      "url": "https://raw.githubusercontent.com/codyrosenzweig1/3179/main/worldwide_map.topojson",
+      "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
+    },
+    "projection": {"type": "equalEarth"},
+    "layer": [ {
+    "transform": [{"calculate": "datum.net_generation/datum.Population", "as": "Net"},
+    {
+      "calculate": "'Data not available in ' + datum.properties.NAME", "as": "note"
+    }],
+    "mark": {"type": "geoshape", "fill": "lightgrey", "stroke": "white"},
+    "encoding": {
+      "tooltip": {
+        "field": "note"
+      }
+    }
+  },
+  {"transform": [
+  {
+    "lookup": "properties.NAME",
+    "from": {
+    "data": {
+      "url": "https://raw.githubusercontent.com/codyrosenzweig1/3179/main/DataVis2.csv"
+    },
+    "key": "Country",
+    "fields": ["net_generation"] 
+  }
+  }
+  ],
+  "mark": {"type": "geoshape", "stroke": "white"},
+  "encoding": {
+    "color": {
+      "field": "net_generation",
+      "type": "quantitative", 
+      "scale": {
+        "type": "threshold", 
+        "domain": [200, 400, 700, 1000],
+        "range": ["#f5eb7f", "#fdbe85", "#fd8d3c", "#e6550d", "#a63603"]
+      }
+    }, 
+    "tooltip": [
+      {"field": "properties.NAME", "type": "nominal", "title": "Country"},
+      {"field": "net_generation", "type": "quantitative", "title": "Net Generation"}
+    ]
+  }
+  },
+    {
+        "data": {
+            "url": "https://raw.githubusercontent.com/codyrosenzweig1/3179/main/worldwide_ocean.topojson",
+            "format": {
+                "type": "topojson",
+                "feature": "oceans"
+            }
+        },
+        "mark": {
+            "type": "geoshape",
+            "fill": "skyblue"
+        }
+      }
+    ],
+  "config": {
+      "background": "#F4E9D1",
+      "title": {"fontSize": 30}
+  }
+  }
